@@ -7,14 +7,14 @@ DROP TABLE IF EXISTS Passengers;
 
 CREATE TABLE Events
 (
-  id    INTEGER PRIMARY KEY,
+  id    INTEGER PRIMARY KEY AUTOINCREMENT,
   time  INTEGER,
   name  TEXT
 );
 
 CREATE TABLE Cars
 (
-  id          INTEGER PRIMARY KEY,
+  id          INTEGER PRIMARY KEY AUTOINCREMENT,
   event_fk    INTEGER,
   seats       INTEGER,
   is_default  BOOLEAN,
@@ -23,7 +23,7 @@ CREATE TABLE Cars
 
 CREATE TABLE People
 (
-  id      INTEGER PRIMARY KEY,
+  id      INTEGER PRIMARY KEY AUTOINCREMENT,
   car_fk  INTEGER,
   name    TEXT,
   driver  BOOLEAN,
