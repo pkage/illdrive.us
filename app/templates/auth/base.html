@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="fullpage">
+    {% for message in get_flashed_messages() %}
+    <div class="notification-topbar has-background-{{ message.type }} has-text-white">
+        {{ message.text }}
+    </div>
+    {% endfor %}
+    {% block auth_content %}{% endblock %}
+    
+</div>
+{% endblock %}

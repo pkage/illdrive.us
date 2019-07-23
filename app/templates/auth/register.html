@@ -1,0 +1,17 @@
+{% extends 'auth/base.html' %}
+
+
+{% block auth_content %}
+<div class="fullpage">
+    <form method="post" class="box login-form flex-column--stretch">
+        <label for="username">Email</label>
+        <input class="input" name="username" id="username" type="email" required placeholder="user@comp-soc.com">
+        <label for="password">Password</label>
+        <input class="input" type="password" name="password" id="password" required>
+
+        <button type="submit" class="button is-small is-primary margin-top">Register</button>
+        <a href="{{ url_for('auth.login') }}" class="is-size-7 margin-top">already have an account?</a>
+    </form>
+    
+</div>
+{% endblock %}
