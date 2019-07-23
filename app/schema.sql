@@ -5,28 +5,26 @@ DROP TABLE IF EXISTS Events;
 DROP TABLE IF EXISTS Cars;
 DROP TABLE IF EXISTS Passengers;
 
-CREATE TABLE `Events`
+CREATE TABLE Events
 (
-  `id` int PRIMARY KEY,
-  `when` datetime,
-  `name` varchar(200)
+  id    INTEGER PRIMARY KEY,
+  time  INTEGER,
+  name  TEXT
 );
 
-CREATE TABLE `Cars`
+CREATE TABLE Cars
 (
-  `id` int PRIMARY KEY,
-  `event_fk` int,
-  `name` varchar(200),
-  `seats` int
+  id        INTEGER PRIMARY KEY,
+  event_fk  INTEGER,
+  name      TEXT,
+  seats     INTEGER,
+  FOREIGN KEY(event_fk) REFERENCES Events(id)
 );
 
-CREATE TABLE `Passengers`
+CREATE TABLE Passengers
 (
-  `id` int PRIMARY KEY,
-  `car_fk` int,
-  `name` varchar(200)
+  id      INTEGER PRIMARY KEY,
+  car_fk  INTEGER,
+  name    TEXT,
+  FOREIGN KEY(car_fk) REFERENCES Cars(id)
 );
-
-ALTER TABLE `Cars` ADD FOREIGN KEY (`event_fk`) REFERENCES `Events` (`id`);
-
-ALTER TABLE `Passengers` ADD FOREIGN KEY (`car_fk`) REFERENCES `Cars` (`id`);
