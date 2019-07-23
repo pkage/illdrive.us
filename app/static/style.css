@@ -3,6 +3,9 @@ body {
     background-color: black;
 }
 
+
+
+/* -- Layout helpers -- */
 .fullpage {
     width:  100vw;
     height: 100vh;
@@ -26,6 +29,8 @@ body {
     flex-direction: column;
 }
 
+
+/* -- Components -- */
 .topbar {
     /* background-color: red; */
     color: white;
@@ -43,16 +48,6 @@ body {
 
 }
 
-.cars[data-dropshown=false] .cars__carfull {
-    display: none;
-}
-
-
-.cars__dropcontainer[data-full=false] > .cars__carfull {
-    opacity: 0;
-    pointer-events: none;
-    height: 0;
-}
 
 .cars__car {
     margin: 10px;
@@ -81,6 +76,11 @@ body {
 .cars__cardrop > .name {
     width: 100%;
 }
+
+/**
+ * Position absolute to keep the flexbox layout from
+ * resizing on content change
+ */
 .cars__carfull {
     position: absolute;
     top: 0;
@@ -95,7 +95,7 @@ body {
     justify-content: center;
     color: white;
 
-    background-color: rgba(255,0,0, 0.3);
+    background-color: rgba(255,0,0, 0.4);
 }
 
 .cars__dropcontainer {
@@ -142,3 +142,23 @@ body {
 .name:active {
     cursor: grabbing;
 }
+
+/* -- CSS Logic -- */
+/* nly show car full indicators when the
+ * dropshown attribute is on the parent
+ */
+.cars[data-dropshown=false] .cars__carfull {
+    display: none;
+}
+
+
+/* hide the indicator when it's not full (but still
+ * rendered) by making sure it can't be dropped into
+ * and making it transparent
+ */
+.cars__dropcontainer[data-full=false] > .cars__carfull {
+    opacity: 0;
+    pointer-events: none;
+    height: 0;
+}
+
