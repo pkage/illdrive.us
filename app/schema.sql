@@ -14,17 +14,18 @@ CREATE TABLE Events
 
 CREATE TABLE Cars
 (
-  id        INTEGER PRIMARY KEY,
-  event_fk  INTEGER,
-  name      TEXT,
-  seats     INTEGER,
+  id          INTEGER PRIMARY KEY,
+  event_fk    INTEGER,
+  seats       INTEGER,
+  is_default  BOOLEAN,
   FOREIGN KEY(event_fk) REFERENCES Events(id)
 );
 
-CREATE TABLE Passengers
+CREATE TABLE People
 (
   id      INTEGER PRIMARY KEY,
   car_fk  INTEGER,
   name    TEXT,
+  driver  BOOLEAN,
   FOREIGN KEY(car_fk) REFERENCES Cars(id)
 );
