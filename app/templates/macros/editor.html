@@ -1,0 +1,53 @@
+{% macro createPerson(name, id) %}
+    <div class="name" data-id="{{ id }}">{{ name }}</div>
+{%- endmacro %}
+{% macro createCar(name, author, capacity, people, id) %}
+<div class="cars__car">
+    <h2 class="cars__cartitle">
+        <span>{{ name }} - <i>{{ author }}</i></span>
+        <span class="cars__cardelete" data-id="{{ id }}">&times;</span>
+    </h2>
+    <div class="cars__dropcontainer">
+        <div class="cars__cardrop"
+             data-drop
+             data-capacity="{{ capacity }}">
+            {% for person in people %}
+                {{ createPerson(person.name, person.id) }}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="cars__carremaining">
+        0 remaining
+    </div>
+    <div class="cars__carfull">
+        <span>car full</span>
+    </div>
+</div>
+{%- endmacro %}
+{% macro createEditorArea(cars, unassigned, event) %}
+<div class="topbar">
+    <a href="/" class="topbar__left">&laquo; back</a>
+    <div class="topbar__event">{{ event.title }}</div>
+    <div class="topbar__right">{{event.relative}}</div>
+</div>
+<div class="cars layout" data-dropshown=false>
+    {% for car in cars %}
+        {{ createCar(car.name, car.owner.name, car.seats, car.passengers, car.id) }}
+    {% endfor %}
+    <div class="cars__addcar" id="addcar">
+        <span class="cars__addcar__inactive">add car</span>
+
+        <input class="cars__addcar__active" id="addcar__name" type="text" autocorrect="off" placeholder="car name"/>
+    </div>
+</div>
+<div class="unassigned">
+    <h2>Unassigned</h2>
+    <div class="unassigned__container">
+        <div class="unassigned__dropzone" data-drop>
+            {% for person in unassigned.passengers %}
+                {{ createPerson(person.name, person.id) }}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{%- endmacro %}

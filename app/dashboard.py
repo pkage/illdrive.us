@@ -4,16 +4,42 @@ from flask import (
     jsonify, make_response
 )
 from werkzeug.exceptions import abort
+import arrow
 
 from .auth import login_required
 from .db import get_db
+import json
 
 bp = Blueprint('dashboard', __name__)
 
 
 @bp.route('/')
 def index():
-    return render_template('/edit.html')
+    data = json.load(open('app/schema.json', 'r'))
+
+    print(data)
+
+    cars = []
+    unassigned = None
+    for car in data['cars']:
+        if car['name'] == 'unassigned':
+            unassigned = car
+        else:
+            cars.append(car)
+
+    event_time = arrow.get(data['time'])
+    event_info = {
+        "title": data['name'],
+        "relative": event_time.humanize(),
+        "date":  event_time.format('MM/DD/YYYY HH:mm')
+    }
+
+    return render_template(
+        '/edit.html',
+        cars=cars,
+        unassigned=unassigned,
+        event=event_info
+    )
 
 @bp.route('/addevent', methods = ['POST', 'GET'])
 def add_event():

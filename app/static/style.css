@@ -6,6 +6,10 @@ body {
 
 
 /* -- Layout helpers -- */
+
+.float-right {
+    float: right;
+}
 .fullpage {
     width:  100vw;
     height: 100vh;
@@ -32,11 +36,37 @@ body {
 
 /* -- Components -- */
 .topbar {
-    /* background-color: red; */
+    color: white;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+
+    padding: 5px;
+    position: relative;
+}
+
+.topbar__event {
+    font-weight: bold;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+
+.topbar__left {
+    color: rgba(255,255,255,0.6);
+    will-change: color;
+    transition: color 0.1s cubic-bezier(0,0,0.3,1);
+}
+.topbar__left:hover {
     color: white;
 }
+
+/* -- Car-related components -- */
 .cars {
-    /* background-color: blue; */
     flex-grow: 1;
 
     display: flex;
@@ -46,8 +76,9 @@ body {
 
     overflow-x: auto;
 
-}
 
+    margin: 0 10px 0 0;
+}
 
 .cars__car {
     margin: 10px;
@@ -60,6 +91,8 @@ body {
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
+
+    position: relative;
 }
 
 .cars__cardrop {
@@ -75,6 +108,72 @@ body {
 
 .cars__cardrop > .name {
     width: 100%;
+}
+
+
+.cars__carremaining {
+
+    font-style: italic;
+    color: rgba(255,255,255,0.6);
+}
+
+.cars__cartitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.cars__cardelete {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-right: 5px;
+
+    color: white;
+    will-change: color;
+    transition: color 0.1s cubic-bezier(0,0,0.3,1);
+    cursor: pointer;
+}
+
+.cars__cardelete:hover {
+    color: red;
+}
+
+.cars__addcar {
+    margin: 10px;
+    border: 1px dashed rgba(255,255,255,0.4);
+    padding: 5px;
+    min-width: 15rem;
+    color: rgba(255,255,255,0.4);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    will-change: color, border;
+    transition: color 0.25s cubic-bezier(0,0,0.3,1), border 0.25s cubic-bezier(0,0,0.3,1);
+
+    cursor: pointer;
+}
+
+
+.cars__addcar--active {
+    color: rgba(255,255,255,0.5) !important;
+    border: 1px solid rgba(255,255,255,0.5) !important;
+}
+
+.cars__addcar:hover {
+    color: rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.7);
+}
+
+#addcar__name {
+    background-color: transparent;
+    border: 0;
+    color: white;
+    font-size: 1rem;
+    width: 10rem;
+    border-bottom: 1px solid rgba(255,255,255,0.7);
 }
 
 /**
@@ -108,16 +207,30 @@ body {
     /* background-color: green; */
     flex: 1 0 0;
 
-
     position: relative;
+    margin: 10px;
+    border: 1px solid white;
+    padding: 5px;
+    min-width: 15rem;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
 }
 
 .unassigned__container {
+    position: relative;
+    flex-grow: 1;
+}
+
+.unassigned__dropzone {
     position: absolute;
-    top: 0;
+    top:    0;
     bottom: 0;
-    left: 0;
-    right: 0;
+    left:   0;
+    right:  0;
 
     display: flex;
     flex-direction: column;
@@ -126,10 +239,10 @@ body {
     justify-content: flex-start;
     flex-wrap: wrap;
 
-    padding: 5px 5vw 5px 5vw;
 }
 
 .name {
+    display: block;
     width: 10rem;
     background-color: rgba(255,255,255,0.3);
 
@@ -152,13 +265,27 @@ body {
 }
 
 
+.cars[data-dropshown=true] .cars__car[data-full=true] {
+    border: 1px solid red;
+}
+
 /* hide the indicator when it's not full (but still
  * rendered) by making sure it can't be dropped into
  * and making it transparent
  */
-.cars__dropcontainer[data-full=false] > .cars__carfull {
+.cars__car[data-full=false] > .cars__carfull {
     opacity: 0;
     pointer-events: none;
     height: 0;
 }
 
+
+/**
+ * Only show the car name input when it's active
+ */
+.cars__addcar.cars__addcar--active > .cars__addcar__inactive {
+    display: none;
+}
+.cars__addcar:not(.cars__addcar--active) > .cars__addcar__active {
+    display: none;
+}
