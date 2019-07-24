@@ -3,43 +3,118 @@
 {% block content %}
 <div class="fullpage layout layout--vertical">
 
-<div class="topbar"> penis </div>
-<div class="cars">
-    <div class="car">
-        <h2>Car #N</h2>
-        <div class="car__dropzone"></div>
+    <div class="topbar"> car editor </div>
+    <div class="cars layout" data-dropshown=false>
+        <div class="cars__car">
+            <h2>Car 1</h2>
+            <div class="cars__dropcontainer">
+                <div class="cars__cardrop"
+                    data-drop
+                    data-capacity=2>
+                </div>
+                <div class="cars__carfull">
+                    <span>car full</span>
+                </div>
+            </div>
+        </div>
+        <div class="cars__car">
+            <h2>Car 2</h2>
+            <div class="cars__dropcontainer">
+                <div class="cars__cardrop"
+                    data-drop
+                    data-capacity=5>
+                </div>
+                <div class="cars__carfull">
+                    <span>car full</span>
+                </div>
+            </div>
+        </div>
+        <div class="cars__car">
+            <h2>Car 3</h2>
+            <div class="cars__dropcontainer">
+                <div class="cars__cardrop"
+                    data-drop
+                    data-capacity=5>
+                </div>
+                <div class="cars__carfull">
+                    <span>car full</span>
+                </div>
+            </div>
+        </div>
+        <div class="cars__car">
+            <h2>Car 4</h2>
+            <div class="cars__dropcontainer">
+                <div class="cars__cardrop"
+                    data-drop
+                    data-capacity=5>
+                </div>
+                <div class="cars__carfull">
+                    <span>car full</span>
+                </div>
+            </div>
+        </div>
+        <div class="cars__car">
+            <h2>Car 5</h2>
+            <div class="cars__dropcontainer">
+                <div class="cars__cardrop"
+                    data-drop
+                    data-capacity=5>
+                </div>
+                <div class="cars__carfull">
+                    <span>car full</span>
+                </div>
+            </div>
+        </div>
+        <div class="cars__car">
+            <h2>Car 6</h2>
+            <div class="cars__dropcontainer">
+                <div class="cars__cardrop"
+                    data-drop
+                    data-capacity=5>
+                </div>
+            </div>
+        </div>
+        <div class="cars__car">
+            <h2>Car 7</h2>
+            <div class="cars__dropcontainer">
+                <div class="cars__cardrop"
+                    data-drop
+                    data-capacity=5>
+                </div>
+            </div>
+        </div>
+        <div class="cars__car">
+            <h2>Car 8</h2>
+            <div class="cars__dropcontainer">
+                <div class="cars__cardrop"
+                    data-drop
+                    data-capacity=5>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="car">
-        <h2>Car #N</h2>
-        <div class="car__dropzone"></div>
+    <div class="unassigned">
+        <div class="unassigned__container" data-drop>
+            <div class="name">Penis McGee</div>
+            <div class="name">Penis McGee II</div>
+            <div class="name">Penis McGee III</div>
+            <div class="name">Penis McGee IV</div>
+            <div class="name">Penis McGee V</div>
+            <div class="name">Penis McGee VI</div>
+            <div class="name">Penis McGee VII</div>
+            <div class="name">Penis McGee VIII</div>
+            <div class="name">Penis McGee IX</div>
+            <div class="name">Penis McGee X</div>
+        </div>
     </div>
-    <div class="car">
-        <h2>Car #N</h2>
-        <div class="car__dropzone"></div>
-    </div>
-    <div class="car">
-        <h2>Car #N</h2>
-        <div class="car__dropzone"></div>
-    </div>
-    <div class="car">
-        <h2>Car #N</h2>
-        <div class="car__dropzone"></div>
-    </div>
-    <div class="car">
-        <h2>Car #N</h2>
-        <div class="car__dropzone"></div>
-    </div>
-    <div class="car">
-        <h2>Car #N</h2>
-        <div class="car__dropzone"></div>
-    </div>
-    <div class="car">
-        <h2>Car #N</h2>
-        <div class="car__dropzone"></div>
-    </div>
-    
 </div>
-<div class="unassigned"></div>
+{% endblock %}
 
-</div>
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='dragula/dragula.css') }}" type="text/css"/>
+{% endblock %}
+{% block js %}
+<script src="{{ url_for('static', filename='dragula/dragula.js') }}"></script>
+ <script src="{{ url_for('static', filename='edit.js') }}" defer></script>
+
 {% endblock %}
